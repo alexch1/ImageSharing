@@ -2,7 +2,7 @@
 
 This is a simple image sharing website based on LAN, the uploaded images will be move to local fordel '/imagesharing/test/saved' on the server side, and the demo website will show 5 recently added images. As below is an example.
 
-
+<img scr='https://raw.githubusercontent.com/alexch1/ImageSharing/master/demo.JPG'>
 
 You may follow the rules below to test the function.
 
