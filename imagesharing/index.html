@@ -1,18 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- change local host to real local ip address -->
-    <script type="text/javascript" src = "../localhost2ip.js"></script>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Off-canvas navigation menu Tutorial">
     <meta name="keywords" content="slide-menu, sidebar, off-canvas, menu, navigation"/>
     <meta name="author" content="AcasA Programming">
-
-    <title>Image Sharing</title>
-
+    <title>Image Sharing</title> 
 
     <!--Include necessary css files -->
     <link rel="stylesheet" type="text/css" href="css/normalize.css"/>
@@ -22,58 +17,51 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="css/fileinput.css"/>
     <link rel="stylesheet" type="text/css" href="css/bootstrap-select.css"/>
+    <!-- <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"/> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-</head>
+    
+    <!--js-->
+    <script type="text/javascript" src = "../localhost2ip.js"></script>
+    
+    <script src="js/jquery.min.js"></script>
+    <script src="js/plugins/canvas-to-blob.min.js"></script>
+    <script src="js/fileinput.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-select.js"></script>
+    <base id = "baseurl" href="http://localhost:8888/imagesharing/">
 
+</head>
 <body>
 
 <input type="checkbox" id="offcanvas-menu" class="toggle"/>
-
 <div class="my-container">
-
     <aside class="menu-container">
-
         <div class="menu-heading clearfix">
             <label for="offcanvas-menu" class="close-btn">
                 <i class="fa fa-times"></i>
             </label>
         </div><!--end menu-heading-->
-
         <nav class="slide-menu">
             <ul>
-                
                 <li><a href="http://rendaliuyu.blog.163.com"><i class="fa fa-star"></i>Web</a></li>
                 <li><a href="http://liutianzhao.blogbus.com"><i class="fa fa-star"></i>Web</a></li>
                 <li><a href="http://ncku1897.org"><i class="fa fa-star"></i>ZJU</a></li>
                 <li><a href="https://github.com/alexch1"><i class="fa fa-cogs"></i>Me</a></li>
                 <!-- <li><a href="https://zh.wikipedia.org/zh-cn/吳彥祖"><i class="fa fa-cogs"></i>关于我</a></li> -->
             </ul>
-        </nav><!--end slide-menu -->
-
+        </nav><!--end slide-menu --> 
     </aside><!--end menu-container-->
-
     <section class="content">
-
         <!--  <label for="offcanvas-menu" class="full-screen-close"></label> -->
-
         <div class="menu">
             <label for="offcanvas-menu" class="toggle-btn">
                 <i class="fa fa-bars"></i>
             </label>
         </div><!--end menu-->
-
-
         <header>
             <h1>Image Sharing (Beta)</h1>
         </header>
-<!-- 
-        <div class="menu-options clearfix">
-            <h3>Have Fun!</h3>
-        </div> -->
-    
-
         <div class="container">
-
             <!-- AUTO REPLACE AFTER EVERY 1 FILE SELECTED -->
             <input id="images" name="image" type="file" class="file-loading" accept="image/*">
             <div id="kv-success-modal" class="modal fade">
@@ -89,43 +77,46 @@
                     </div>
                 </div>
             <!-- </div> -->
-
-
         </div><!--end upload-->
     <br />
-
-
         <div class="row text-centered">
             <div class="col-lg-12">
-                <a id = "baseurl" class="btn btn-info" href="http://localhost:8888/imagesharing/result_test.php">See Recently Added Images</a>
+                <a class="btn btn-info" href="result_test.php">See Recently Added Images</a>
             </div>
         </div>
 
-    </section><!--end content-->
+    </section><!--end content--> 
 </div> <!--end container -->
+</body>
+</html>
+<script>  
+    // alert("/htdocs/imagesharing/index.html/script");
+    // function getmyIP(){
+    //     // to be done!!!
+    //     return "192.168.1.57";  
+    // }
 
-
-<!--js-->
-<script src="js/jquery.min.js"></script>
-<script src="js/plugins/canvas-to-blob.min.js"></script>
-<script src="js/fileinput.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/bootstrap-select.js"></script>
-<script>
-     var localip = getmyIP(); 
-     var success_panel = $('<div class="alert alert-success"><a class="btn btn-sm btn-success" href="/imagesharing/result_test.php">Click me</a>  to see recently added images</div>');
-     var file_name = "";
-    //alert($('.selectpicker').selectpicker('val'));
-
+    // function changeip(){
+    //     localip = getmyIP(); 
+    //     // 替换id为baseurl的href. 
+    //     window.onload= function(){
+    //         var myreplace=document.getElementById('baseurl').href;
+    //         document.getElementById('baseurl').href = myreplace.replace("localhost",localip);
+    //     } 
+    // }
+    changeip();  // SEE localhost2ip.js
+    var success_panel = $('<div class="alert alert-success"><a class="btn btn-sm btn-success" href="result_test.php"> Click me</a>  to see recently added images</div>');
+    var file_name = "";
+    // alert($('.selectpicker').selectpicker('val'));
+    var localip = getmyIP(); 
     $("#images").fileinput({  
         uploadUrl: "http://"+localip+":8888/imagesharing/php_test.php",
+        // uploadUrl: "http://localhost:8888/imagesharing/php_test.php",
         autoReplace: true,
         maxFileCount: 10,
         allowedFileExtensions: ["jpg","png","jpeg","JPG","PNG","JPEG"],
- 
     }).
     on('filepreupload', function () {
-
         $('#kv-success-box').html('');
         $('.progress-bar').css("width", 0 + "px");
         $('.progress-bar').html(0);
@@ -138,8 +129,4 @@
         $('#kv-success-box').append(success_panel);
         $('#kv-success-modal').modal('show');
     });
-
-
 </script>
-</body>
-</html>
